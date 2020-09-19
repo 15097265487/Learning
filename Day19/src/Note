@@ -1,0 +1,61 @@
+        匿名内部类不能定义任何静态成员、 方法和类， 只能创建匿名内部类的一
+个实例。 一个匿名内部类一定是在new的后面， 用其隐含实现一个接口或
+实现一个类。
+ 格式：
+new 父类构造器（实参列表） |实现接口(){
+   //匿名内部类的类体部分
+}
+ 匿名内部类的特点
+ 匿名内部类必须继承父类或实现接口
+ 匿名内部类只能有一个对象
+ 匿名内部类对象只能使用多态形式引用
+
+ * 类的成员之五：内部类
+ * 	1.java中允许将一个类A定义在另一个类B的内部
+ * 		则A为内部类   B为外部类
+ * 	2.内部类分类：
+ * 		成员内部类（静态 非静态） vs
+ * 		局部内部类（方法内、代码块内、构造器内） 
+ * 	3.成员内部类：
+ * 		一方面：作为外部类的成员
+ * 			>调用外部类的结构
+ * 			>可以被static修饰
+ * 			>可以被四种访问权限修饰符修饰
+ * 		另一方面：作为一个类
+ * 			>类里可以定义属性，方法、构造器等
+ * 			>可以被final修饰，不能被继承
+ * 			>可以被abstract修饰
+ * 	4.如何实例化成员内部类的对象
+ * 	  	InnerClassTest.Cat c2 = new InnerClassTest.Cat();//不导包
+ * 	  	InnerClassTest w = new InnerClassTest();//外部内的对象
+ *    	InnerClassTest.Dog d = w.new Dog();
+ * 	     如何在成员内部类中区分调用外部类的结构
+ * 	  	this.name   内部类属性
+ * 	  	InnerClassTest.this.name  外部类属性
+ * 	     开发中局部内部类的使用
+ 
+  * 1.内部类仍然是一个独立的类， 在编译之后内部类会被编译成独立的.class文件， 但
+		是前面冠以外部类的类名和$符号， 以及数字编号。
+ 2.只能在声明它的方法或代码块中使用， 而且是先声明后使用。 除此之外的任何地方
+		都不能使用该类。
+ 3.局部内部类可以使用外部类的成员， 包括私有的。
+ 4.局部内部类可以使用外部方法的局部变量， 但是必须是final的。 由局部内部类和局
+		部变量的声明周期不同所致。
+ 5.局部内部类和局部变量地位类似， 不能使用public,protected,缺省,private
+ 6.局部内部类不能使用static修饰， 因此也不能包含静态成员
+
+ * java.lang.Throwable
+ * 		|--->java.long.Error:一般不变写针对性代码解决处理
+ * 		|--->java.lang.Exception：可以进行异常处理
+ * 			|---编译时异常(受检)
+ * 				|---IOException
+ * 					|---FileNotFoundException
+ * 				|---ClassNotFoundException
+ * 			|---运行时异常(unchecked，RuntimeException)非受检
+ * 				|---NullPointerException
+ * 				|---ArrayIndexOutOfBoundsException
+ * 				|---ClassCastException
+ * 				|---NumberFormatException
+ * 				|---InputMismatchException
+ 
+ 
