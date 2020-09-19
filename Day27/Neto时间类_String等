@@ -1,0 +1,63 @@
+ *String StringBuffer StringBuilder 
+ *	一、三者对比分析
+ * String 不可变的字符序列，底层是使用char[]
+ * StringBuffer,可变的字符序列,线程安全的,效率低，底层是使用char[]
+ * StringBuilder,可变的字符序列,线程不安全的,效率高，底层是使用char[] (AbstractStringBuilder) 源码分析：
+ * ①String s = new String(); //char[] value = new char[0] String s = new
+ * String("abc"); //char[] value = new char[]{'a','b','c'};
+ * 
+ * ②StringBuffer s = new StringBuffer(); //char[] value = new
+ * char[16];底层创建了一个长度为16的数组 s.length()-->0 StringBuffer s = new
+ * StringBuffer("a"); //char[] value = new char["a".length()+16]; s.length()-->1
+ * 	长度问题：syso(s.length()) 
+ * 	扩容问题：如果要添加的数组底层数组盛不下了，
+ * 		那就需要扩容底层数组。
+ * 		默认情况下，扩容为原来容量的2倍+2，同时将原有数组中的元素赋值到新数组中 (value=Arrays.copyOf(value，新数组长度) )
+ * 二、StringBuffer常用方法：
+ *	增：append(xxx) 
+ * 	删：delete(int start,int end) 
+ * 	改：replace(int start,int end,String str)/setCharAt(int n,char ch) 
+ * 	查：charAt(int index)/indexOf(String s) 
+ * 	插：insert(int offset,xxx) 长度：length() 
+ * 	遍历： toString() / for()+charAt()
+ * 
+ * capacity:容量
+ 
+ 
+ * jdk8的时间api
+ * LocaDate
+ * LocaTime
+ * LocaDateTime
+ 
+ 
+SimpleDateFormat
+	 * 	对日期Date类格式化和解析
+	 * 	格式化：Date日期------>字符串
+	 * 	解析：
+	 * 	1.如何对SimpleDateFormat实例化
+	 * 	字符串---------->日期
+	 * 	parse()解析的意思
+	 *  Calendar(日历)类
+	 * 	日历类，他是一个抽象类，封装了所有的日历字段值，通过统一的方法根据传入不同的日历字段可以获取值。
+    	1.如何得到一个日历对象呢?
+    					 new GregorianCalendar()实例化子类
+        	Calendar c = Calendar.getInstance()；//返回的是子类对象
+    	2.成员方法
+        	public void add(int field,int amount):根据给定的日历字段和对应的时间，来对当前的日历进行操作。
+        	public final void set(int year,int month,int date):设置当前日历的年月日
+        	
+        	
+	 *  java.util.Date
+	 *  java.sql.Date
+	 *  
+	 * 	1.构造器的使用
+	 * 		①new Date()  创建一个返回当前时间的Date对象，
+	 * 		②new Date(L) 创建指定毫秒值的Date对象
+	 * 	2.两个方法的使用
+	 * 		①toString(),显示Fri Aug 21 11:50:48 CST 2020
+	 * 		②getTime()，获取当前Date对象对应的毫秒值（时间戳）
+	 * 	3.java.sql.Date
+	 * 		①实例化 new Date(long millis)
+	 * 		②java.sql.Date与java.util.Date互相转换
+	 * 			java.util.Date  d = new java.util.Date()
+	 * 			java.sql.Date  dt = new java.sql.Date(d.getTime())
