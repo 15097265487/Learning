@@ -1,0 +1,163 @@
+ * 	java中两个对象进行比较，正常情况==、！=、equals()
+ * 		如何实现两个对象间的大小比较
+ * 			使用接口Comparable  Comparator
+ * 	一、实现Comparable接口   自然排序
+ 
+ 	 *一、实现Comparable接口   自然排序
+	 *	1.String实现了Comparable，重写了CompareTo(obj)
+	 *	2.CompareTo(obj)比较规则，如果当前对象this大于形参对象，则返回正整数
+	 *						        如果当前对象this小于形参对象，则返回负整数
+	 *						        如果当前对象this等于形参对象，则返回0
+	 *对于自定义类，如果需要进行排序，可以让自定义类去实现Comparable接口，
+	 *	重写CompareTo(obj)方法，在CompareTo(obj)方法指明排序规则
+	 
+	 	 * 方式二：定制排序
+	 * 	定制排序：java.util.Comparator
+	 * 	背景：当类实现了Comparaable接口的规则进行排序时，如String，不能修改当前的比较方法，那么就考虑Comparator
+	 * 		的对象来排序
+	 * 	比较规则：
+	 * 		如果方法返回正整数，表示o1>o2
+	 * 		如果返回0 则相等
+	 * 		如果方法返回负整数，表示o1<o2
+	 	Arrays.sort(arr,new Comparetor()){..重写..}
+	 
+ * 其他类的演示
+ * 	System 
+ * 		currentTimeMillis()
+ * 			该方法的作用是返回当前的计算机时间，时间的表达格式为当前计算机时
+			间和GMT时间(格林威治时间)1970年1月1号0时0分0秒所差的毫秒数。
+ * 		exit(0/非0)----正常/异常退出程序
+ * 		gc()
+ * 			该方法的作用是请求系统进行垃圾回收。至于系统是否立刻回收，则
+			取决于系统中垃圾回收算法的实现以及系统执行时的情况。
+		System.getProperty("key");
+			该方法的作用是获得系统中属性名为key的属性对应的值。
+ * 	Math
+ * 	BigXxxx、
+ *		java.math包的BigInteger可以表示不可变的任意精度的整数	 
+	 
+	 
+	 
+ * 	一、枚举类的使用
+ * 	1.理解：类的对象只有有限个，确定的。
+ * 	2.当需要定义一组常量时，建议使用枚举类
+ * 	3.如果枚举类中只有一个对象，则可以使用单例模式
+ * 	二、如何定义枚举
+ * 	1.jdk5前，自定义枚举类
+ * 	2.jdk5后
+ 
+ 
+	 
+	 
+	  * System.currentTimeMillis() 1970.1.1 0:0:0
+ *   一、JDK8前
+ * 	1.Date
+ * 		java.util.Date 
+ * 			java.sql.Date
+ * 		1)实例化
+ * 			new Date(),new Date(1234566L)
+ * 			new java.sql,Date(1L)
+ * 		2)常用方法
+ * 			toString()
+ * 			getTime()
+ *  	注：有偏移量:year+1900，
+ *  2.Calendar 抽象类
+ *  	月从0开始 星期日是第一天
+ *  	1)实例化
+ *  		new GregorianCalendar()
+ *  		Calender.getInstance()
+ *  	2)常用方法
+ *  		get(xxx),	calendar.get(Calendar.DAY_OF_MONTH);
+ *  		set(x,x),可变性,calendar.set(Calendar.DAY_OF_MONTH, 10);
+ *  		add(x,x),	calendar.add(Calendar.DAY_OF_MONTH, -20);
+ *  		Calendar-->Date,calendar.getTime();	
+ *  		Date-->Calendar,calendar.setTime(date);
+ *  SimpleDateFormat	
+ *  	1)实例化 
+ *  		new SimpleDateFormat();
+ *  		new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+ *  	2)常用方法
+ *  		格式化：Date日期-->字符串
+ *  			String simpleDateFormat.format(date)
+ *  		解析：字符串-->Date
+ *  			Date simpleDateFormat.parse("xx")
+ *  				ParseException
+ *  二、jdk8的时间api
+ *  1.LocalDate LocalTime LocalDateTime	
+ *   1)now() 获取当前的日期 时间 日期+时间
+ *   	LocalDate date = LocalDate.now()
+ *   	LocalTime time = LocalTime.now()
+ *   	LocalDateTime dateTime = LocalDateTime.now()	
+ *   2)of(),设置指定的 年 月 日 时 分 秒，没有偏移量
+ *   	LocalDateTime LocalDateTime.of(2020, 1, 31, 8, 48);
+ *   3)getXxxx() 获取
+ *   	int localDateTime.getDayOfMonth()	
+ *   	Month localDateTime.getMonth()
+ *   	int localDateTime.getMonthValue()
+ *   	DayOfWeek localDateTime.getDayOfWeek()
+ *   	...
+ *   4)withXxxx() 设置 (体现不可变性)	
+ *   	LocalDateTime localDateTime.withDayOfMonth(10)
+ 
+ 
+  * jdk8的时间api
+ *   1.LocalDate LocalTime LocalDateTime
+ *   	它们的实例是不可变的对象，分别表示使用 ISO-8601(即公历)日历系统的日期、时间、日期和时间。
+ *   	1)now() 静态方法，根据当前时间创建对象/指定时区的对象
+ *   		LocalDate date = LocalDate.now() 日期
+ *   		LocalTime time = LocalTime.now() 时间
+ *   		LocalDateTime dateTime = LocalDateTime.now() 日期时间	
+ *   	2)of(),静态方法，根据指定日期/时间创建对象
+ *   		设置指定的 年 月 日 时 分 秒，没有偏移量
+ *   		LocalDateTime LocalDateTime.of(2020, 1, 31, 8, 48);
+ *   	3)getXxxx() 获取
+ *   		int localDateTime.getDayOfMonth()	
+ *   		Month localDateTime.getMonth()
+ *   		int localDateTime.getMonthValue()
+ *   		DayOfWeek localDateTime.getDayOfWeek()
+ *   		...
+ *  	 4)withXxxx() 设置 (体现不可变性)	
+ *  		将月份天数、年份天数、月份、年份修改为指定的值并返回新的对象
+ *   		LocalDateTime localDateTime.withDayOfMonth(10)
+ *   	 5)plusXxxx() 增加
+ *   		向当前对象添加几天、几周、几个月、几年、几小时
+ *   		LocalDateTime ldt1 = localDateTime.plusMonths(5);
+ *   	 6)minusXxxx 减少
+ *   		从当前对象减去几月、几周、几天、几年、几小时
+ *   		LocalDateTime ldt2 = localDateTime.minusMonths(4);
+ *   2.Instant:
+ *   	时间线上的一个瞬时点。 这可能被用来记录应用程序中的事件时间戳
+ *   	1)now() 
+ *   		静态方法，返回默认UTC时区的Instant类的对象
+ *   	2)atOffset(ZoneOffsetoffset)
+ *   		结合即时的偏移来创建一个OffsetDateTime
+ *   		OffsetDateTime offsetDateTime = now.atOffset(ZoneOffset.ofHours(8));
+ *   	3)ofEpochMilli(longepochMilli)
+ *   		静态方法，返回在1970-01-0100:00:00基础上加上指定毫秒数之后的Instant类的对象
+ *   		Instant instant = Instant.ofEpochMilli(10L);
+ *   	4)toEpochMilli()
+ *   		返回1970-01-0100:00:00到当前时间的毫秒数，即为时间戳
+ *   		long millis = now.toEpochMilli();
+ *   3.DateTimeFormatter
+ *   	格式化 解析日期 时间，类似于SimpleDateFormat
+ *   	1)
+ 		DateTimeFormatter
+	 `	格式化：解析时间日期
+	 	解析：
+	 * 	ISO_LOCAL_DATE_TIME;
+	 * 	ISO_LOCAL_DATE;
+	 * 	ISO_LOCAL_TIME
+ *   	2)
+ 
+ 		方式二：ofLocalizedDateTime(FormatStyle.LONG)
+ 		   DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG);
+		 * FormatStyle.LONG----2020年8月24日 上午11时03分41秒
+		 * FormatStyle.FULL----2020-08-24T10:52:57.496
+		 * FormatStyle.SHORT---2020-08-24T10:54:39.344
+		 * FormatStyle.MEDIUM--2020-08-24T10:54:15.677
+ 
+ *   	3)
+ 		//自定义格式化3：
+		DateTimeFormatter dtf3 = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss");
+		String format3 = dtf3.format(LocalDateTime.now());
+		System.out.println("\n"+format3);//2020-08-24 11:11:11
