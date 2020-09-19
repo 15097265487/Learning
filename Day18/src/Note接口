@@ -1,0 +1,59 @@
+ * 接口的使用：
+ * 	1.接口使用interface来定义
+ * 	2.java中，接口和类是两个并列的结构
+ * 	3.如何定义接口，定义接口中的成员
+ * 		interface 接口名{}
+ * 		3.1 jdk7之前，只能定义全局的常量和抽象的方法
+ * 		>全局常量：public static final的默认有
+ * 				但是书写的时候可以不写
+ * 		>抽象方法：public abstract的，不写默认也是有的,              接口中的方法都只抽象的
+ * 		
+ * 		jdk8：还可以定义静态方法、默认方法
+ * 	4.接口中是不可以定义构造器的！意味着接口不可以被实例化
+ * 	5.java中接口通过让类实现（implements）的方式去使用。
+ * 		如果实现类覆盖了接口中所有的抽象方法，则此实现类可以实例化。
+ * 		如果实现类没有覆盖了接口中所有的抽象方法，则此实现类仍为抽象类。
+ * 	6.java类可以实现多个接口（弥补了java单继承的局限性）。class A extends B implements C,D,E{}
+ * 	7.接口与接口之间可以继承，而且还可以多继承的
+ * 
+ * 	8.接口的使用体现了多态性，
+ * 	9.接口实际上还可以看做是一种规范，
+ 
+ 
+ 
+ 
+ 
+ 		 Computer c = new Computer();
+		 //1.非匿名实现类的非匿名对象
+		 Up u = new Up();
+		 c.m(u);
+		 System.out.println("--------------------");
+		 //2.非匿名实现类的匿名对象
+		 c.m(new Up());
+		 System.out.println("--------------------");
+		 //3.匿名实现类的非匿名对象
+		 Usb phone = new Usb() {
+
+			@Override
+			public void atart() {
+				System.out.println("手机开始工作了");
+			}
+			@Override
+			public void stop() {
+				System.out.println("手机结束工作");
+			}
+		 };
+		 c.m(phone);
+		 System.out.println("--------------------");
+		 //4.匿名实现类的匿名对象
+		 c.m(new Usb(){
+
+			@Override
+			public void atart() {
+				System.out.println("鼠标开始工作");
+			}
+			@Override
+			public void stop() {
+				System.out.println("鼠标结束工作");
+			}
+		 });
